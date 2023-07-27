@@ -50,6 +50,14 @@ function parse(data) {
     }
     const universities = {};
     $(element).nextUntil('h3', 'a').each((i, aElement) => {
+      praseUniv(aElement);
+    });
+    // Extract universities from <small>
+    $(element).nextUntil('h3', 'small').find('a').each((i, aElement) => {
+      praseUniv(aElement);
+    })
+    result[cityName] = universities;
+    function praseUniv(aElement) {
       const universityName = $(aElement).text();
       let universityURL = $(aElement).attr('href');
       // Ignore links that start with "#"
@@ -62,8 +70,7 @@ function parse(data) {
         universityURL = `${parsedURL.protocol}//${parsedURL.hostname}`;
       }
       universities[universityName] = universityURL;
-    });
-    result[cityName] = universities;
+    }
   });
   console.log("解析学校数据成功：准备写入文件...");
   return result;
