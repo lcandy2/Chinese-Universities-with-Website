@@ -1,0 +1,14 @@
+{
+  "name": "chinese-universities-with-website",
+  "version": "1.0.0",
+  "description": "中国高校列表爬虫（附对应官网）",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "lcandy2",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
