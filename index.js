@@ -58,7 +58,15 @@ function parse(data) {
     })
     result[cityName] = universities;
     function praseUniv(aElement) {
-      const universityName = $(aElement).text();
+      const siblings = $(aElement).parent().contents();
+      const aIndex = siblings.index(aElement);
+      const preText = $(siblings[aIndex - 1]).text().trim().split(/\s/).pop();
+      let universityName = $(aElement).text();
+      const validEndings = ['校', '院', '学'];
+      if (validEndings.some(ending => preText.endsWith(ending))) {
+        universityName = preText + universityName;
+      }
+
       let universityURL = $(aElement).attr('href');
       // Ignore links that start with "#"
       if (universityURL && universityURL.startsWith('#')) {
