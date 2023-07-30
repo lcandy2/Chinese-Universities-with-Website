@@ -24,6 +24,7 @@ function fetch(url) {
         reject(new Error(`Failed to fetch the content. Status code: ${res.statusCode}`));
         return;
       }
+      res.setEncoding('utf8')
       let rawData = '';
       res.on('data', (chunk) => {
         rawData += chunk;
